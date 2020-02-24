@@ -7,9 +7,5 @@ package api;
  * @author Kevin Wright
  */
 public interface CarApiInterface {
-    public String vehicleVin(String _vin);
-
-    public int vehicleMileage(int _mileage);
-
-    public String vehicleDtc(String _dtCode);
+    public String loadDiagnostic(String _vin, int _mileage, String _dtCode);
 }
