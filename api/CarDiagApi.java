@@ -2,6 +2,7 @@ package api;
 
 import java.io.*;
 import java.net.*;
+import org.json.*;
 
 /**
  * The CarDiagApi class connects to the CarMD server to retrieve a diagnostic on
@@ -19,21 +20,44 @@ public class CarDiagApi implements CarApiInterface {
 
     private static final String partnerToken = "a860eab57e804808b3f4ce3862359995";
 
-	@Override
-	public String vehicleVin(String _vin) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String loadDiagnostic(String _vin, int _mileage, String _dtCode) {
+        // Build the search URL
+        String search = "diag?vin=" + _vin + "&mileage=" + _mileage + "&dtc=" + _dtCode;
+        try {
+            URL url = new URL(CarDiagApi.baseURL + search);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+            JSONObject obj = new JSONObject(content.toString());
+            String problem = obj.getString("problem");
+            return problem;
+        } catch(Exception ex) {
+            return null;
+        }
+    }
 
-	@Override
-	public int vehicleMileage(int _mileage) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public String vehicleVin(String _vin) {
+        // TODO Auto-generated method stub
+        return "1GNALDEK9FZ108495";
+    }
 
-	@Override
-	public String vehicleDtc(String _dtCode) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public int vehicleMileage(int _mileage) {
+        // TODO Auto-generated method stub
+        return 100000;
+    }
+
+    @Override
+    public String vehicleDtc(String _dtCode) {
+	// TODO Auto-generated method stub
+	return "p0420";
+    }
 }
