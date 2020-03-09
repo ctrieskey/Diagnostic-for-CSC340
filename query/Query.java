@@ -6,6 +6,8 @@ import java.util.ArrayList;
 /*
  * This Query class holds the information about the car that is having issues. Eventually it will also 
  * hold possible diagnoses.
+ * 
+ * Query
  * Last Updated: 3/9/2020
  * @author Conner Trieskey
  * 

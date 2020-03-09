@@ -10,6 +10,7 @@ import data.DataManager;
  * These documents use the make, model, year, or date of query creation to look up a query.
  * The search model can give the findQuery method null values if only part of the information on the 
  * query is known. The method will return any queries that match the search terms.
+ * 
  * QueryManager
  * Last Updated: 3/9/2020
  * @author Conner Trieskey
