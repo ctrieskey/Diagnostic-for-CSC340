@@ -14,7 +14,7 @@ import query.Query;
 /*
  * This class will be in charge of reading and writing data supplied by
  * the data manager into actual documents.
- * Last Updated: 2/17/2020
+ * Last Updated: 3/9/2020
  * @author Conner Trieskey
  * 
  */
@@ -29,64 +29,83 @@ public class ReaderWriter {
 	private FileOutputStream output;
 	private ObjectOutputStream objectOutput;
 	
+	//constructor that loads list of queries from a file
 	public ReaderWriter() {
 		loadDoc(this.queryDoc);
 	}
 	
+	//creates a query doc
 	private void createDoc(File _doc) {
 		try {
 			this.output = new FileOutputStream(_doc);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
 		try {
 			this.objectOutput = new ObjectOutputStream(output);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//loads a query doc
 	private void loadDoc(File _doc) {
 		try {
 			this.input = new FileInputStream(_doc);
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e) {
+			//if there's no doc, create one
 			createDoc(_doc);
 			e.printStackTrace();
 		}
 
 		try {
 			this.objectInput = new ObjectInputStream(input);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	//writes a query to the doc
 	public void writeQuery(Query _q) {
 		try {
 			this.objectOutput.writeObject(_q);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//reads queries from the doc
 	public ArrayList<Query> readQueries() {
 		ArrayList<Query> q = null;
 		
 		try {
 			q = (ArrayList<Query>) objectInput.readObject();
-		} catch (ClassNotFoundException e) {
+		}
+		catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return q;
+	}
+	
+	//updates a query in the doc
+	public void updateQuery(Query _q) {
+		
+	}
+	
+	//marks a query as inactive
+	public void deleteQuery(Query _q) {
+		
 	}
 	
 }
