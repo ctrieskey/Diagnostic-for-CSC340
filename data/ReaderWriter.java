@@ -14,6 +14,11 @@ import query.Query;
 /*
  * This class will be in charge of reading and writing data supplied by
  * the data manager into actual documents.
+<<<<<<< HEAD
+ * 
+ * reader writer
+=======
+>>>>>>> 43d29e0184cb963d9c1265ad5892623bd4e8fd8b
  * Last Updated: 3/9/2020
  * @author Conner Trieskey
  * 
