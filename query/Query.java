@@ -1,11 +1,17 @@
 package query;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /*
  * This Query class holds the information about the car that is having issues. Eventually it will also 
  * hold possible diagnoses.
- * Last Updated: 2/17/2020
+<<<<<<< HEAD
+ * 
+ * Query
+=======
+>>>>>>> 43d29e0184cb963d9c1265ad5892623bd4e8fd8b
+ * Last Updated: 3/9/2020
  * @author Conner Trieskey
  * 
  */
@@ -13,7 +19,8 @@ public class Query {
 
 	private String make, model, year;
 	private LocalDateTime date;
-	
+	private boolean isActive = true;
+	private ArrayList<String> symptoms = new ArrayList<String>();	
 	public Query(String make, String model, String year, LocalDateTime date) {
 		this.make = make;
 		this.model = model;
@@ -21,6 +28,24 @@ public class Query {
 		this.date = date;
 	}
 
+	//=========symptom editing=========
+	
+	public void clearSymptoms() {
+		symptoms.clear();
+	}
+	
+	public void addSymptom(String _symptom) {
+		symptoms.add(_symptom);
+	}
+	
+	public void removeSymptom(String _symptom) {
+		symptoms.remove(_symptom);
+	}
+	
+	public boolean hasSymptom(String _symptom) {
+		return symptoms.contains(_symptom);
+	}
+	
 	//=============Getters============
 	
 	public String getMake() {
@@ -37,6 +62,14 @@ public class Query {
 
 	public LocalDateTime getDate() {
 		return date;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+	
+	public ArrayList<String> getSymptoms(){
+		return symptoms;
 	}
 	
 	//=============Setters============
@@ -55,6 +88,10 @@ public class Query {
 
 	public void setDate(LocalDateTime date) {
 		this.date = date;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 }
