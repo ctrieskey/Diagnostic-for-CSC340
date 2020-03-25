@@ -20,7 +20,8 @@ public class Query {
 	private String make, model, year;
 	private LocalDateTime date;
 	private boolean isActive = true;
-	private ArrayList<String> symptoms = new ArrayList<String>();	
+	private ArrayList<String> symptoms = new ArrayList<String>();
+	
 	public Query(String make, String model, String year, LocalDateTime date) {
 		this.make = make;
 		this.model = model;
