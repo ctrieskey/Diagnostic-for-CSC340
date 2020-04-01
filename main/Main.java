@@ -1,5 +1,7 @@
 package main;
 
+import forms.ProtoWindow;
+
 /**
  * Creates and displays a new window
  * @author Kevin Wright
