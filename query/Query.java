@@ -11,40 +11,31 @@ import java.util.ArrayList;
  * Query
 =======
 >>>>>>> 43d29e0184cb963d9c1265ad5892623bd4e8fd8b
- * Last Updated: 3/9/2020
+ * Last Updated: 4/13/2020
  * @author Conner Trieskey
  * 
  */
 public class Query {
 
-	private String make, model, year;
-	private LocalDateTime date;
+	private String make, model, year, date, symptoms;
 	private boolean isActive = true;
-	private ArrayList<String> symptoms = new ArrayList<String>();
+	
+	public Query() {
+		
+	}
 	
 	public Query(String make, String model, String year, LocalDateTime date) {
 		this.make = make;
 		this.model = model;
 		this.year = year;
+		this.date = date.toString();
+	}
+	
+	public Query(String make, String model, String year, String date) {
+		this.make = make;
+		this.model = model;
+		this.year = year;
 		this.date = date;
-	}
-
-	//=========symptom editing=========
-	
-	public void clearSymptoms() {
-		symptoms.clear();
-	}
-	
-	public void addSymptom(String _symptom) {
-		symptoms.add(_symptom);
-	}
-	
-	public void removeSymptom(String _symptom) {
-		symptoms.remove(_symptom);
-	}
-	
-	public boolean hasSymptom(String _symptom) {
-		return symptoms.contains(_symptom);
 	}
 	
 	//=============Getters============
@@ -61,7 +52,7 @@ public class Query {
 		return year;
 	}
 
-	public LocalDateTime getDate() {
+	public String getDate() {
 		return date;
 	}
 
@@ -69,7 +60,7 @@ public class Query {
 		return isActive;
 	}
 	
-	public ArrayList<String> getSymptoms(){
+	public String getSymptoms(){
 		return symptoms;
 	}
 	
@@ -87,8 +78,12 @@ public class Query {
 		this.year = year;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public void setSymptoms(String symptoms) {
+		this.symptoms = symptoms;
 	}
 
 	public void setActive(boolean isActive) {

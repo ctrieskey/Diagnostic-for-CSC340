@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import query.Query;
+import query.QueryManager;
 
 /*
  * This class will be in charge of reading and writing data supplied by
@@ -19,15 +20,15 @@ import query.Query;
  * reader writer
 =======
 >>>>>>> 43d29e0184cb963d9c1265ad5892623bd4e8fd8b
- * Last Updated: 3/9/2020
+ * Last Updated: 4/13/2020
  * @author Conner Trieskey
  * 
  */
 public class ReaderWriter {
 	
-	public static final String QUERY_DOC_FILENAME = "/queries.txt";
+	public static final String QUERY_DOC_FILENAME = "/res/queries.txt";
 	
-	private File queryDoc = new File(QUERY_DOC_FILENAME);
+	private File queryDoc;
 	private FileInputStream input;
 	private ObjectInputStream objectInput;
 	
@@ -36,6 +37,7 @@ public class ReaderWriter {
 	
 	//constructor that loads list of queries from a file
 	public ReaderWriter() {
+		queryDoc = new File(QUERY_DOC_FILENAME);
 		loadDoc(this.queryDoc);
 	}
 	
@@ -52,6 +54,13 @@ public class ReaderWriter {
 			this.objectOutput = new ObjectOutputStream(output);
 		}
 		catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			objectOutput.close();
+			output.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -76,7 +85,7 @@ public class ReaderWriter {
 	}
 
 	//writes a query to the doc
-	public void writeQuery(Query _q) {
+	public void writeQuery(ArrayList<Query> _q) {
 		try {
 			this.objectOutput.writeObject(_q);
 		}
@@ -103,14 +112,9 @@ public class ReaderWriter {
 		return q;
 	}
 	
-	//updates a query in the doc
-	public void updateQuery(Query _q) {
-		
-	}
-	
 	//marks a query as inactive
 	public void deleteQuery(Query _q) {
-		
+		QueryManager.getCurrentQuery().setActive(false);
 	}
 	
 }
