@@ -9,7 +9,7 @@ import org.json.*;
  * the vehicle given its VIN, mileage, and the error code.
  * Note: Do not call this class directly. Route requests through
  * CarDiagApiTranslator
- * Last Updated: 2/30/2020
+ * Last Updated: 4/13/2020
  * @author Kevin Wright
  */
 
@@ -27,11 +27,11 @@ public class CarDiagApi implements CarApiInterface {
 
         try {
             //Create the URL and connect to the API
-            URL url = new URL(CarDiagApi.BASEURL + search);
+            URL url = new URL(this.BASEURL + search);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
-            con.setRequestProperty("authorization", AUTHORIZATION);
-            con.setRequestProperty("partner-token", PARTNERTOKEN);
+            con.setRequestProperty("authorization", this.AUTHORIZATION);
+            con.setRequestProperty("partner-token", this.PARTNERTOKEN);
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
             StringBuilder content = new StringBuilder();
