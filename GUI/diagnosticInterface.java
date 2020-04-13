@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
  * @author Lavante Hammond
  */
 
-public class diagnosticInterface extends Application{
+public class DiagnosticInterface extends Application{
 
     //Override primaryStage method of Application class
     @Override
