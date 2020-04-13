@@ -12,11 +12,11 @@ import javafx.scene.layout.GridPane;
  * The diagnosticInterface class provides a GUI for the vehicle diagnostic
  * program.
  *
- * Last Updated: 3/11/2020
+ * Last Updated: 3/28/2020
  * @author Lavante Hammond
  */
 
-public class DiagnosticInterface extends Application{
+public class diagnosticInterface extends Application{
 
     //Override primaryStage method of Application class
     @Override
