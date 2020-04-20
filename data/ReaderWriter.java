@@ -15,18 +15,14 @@ import query.QueryManager;
 /*
  * This class will be in charge of reading and writing data supplied by
  * the data manager into actual documents.
-<<<<<<< HEAD
- * 
  * reader writer
-=======
->>>>>>> 43d29e0184cb963d9c1265ad5892623bd4e8fd8b
  * Last Updated: 4/13/2020
  * @author Conner Trieskey
  * 
  */
 public class ReaderWriter {
 	
-	public static final String QUERY_DOC_FILENAME = "/res/queries.txt";
+	public static final String QUERY_DOC_FILENAME = "queries.txt";
 	
 	private File queryDoc;
 	private FileInputStream input;
@@ -38,56 +34,28 @@ public class ReaderWriter {
 	//constructor that loads list of queries from a file
 	public ReaderWriter() {
 		queryDoc = new File(QUERY_DOC_FILENAME);
-		loadDoc(this.queryDoc);
-	}
-	
-	//creates a query doc
-	private void createDoc(File _doc) {
-		try {
-			this.output = new FileOutputStream(_doc);
-		}
-		catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		try {
-			this.objectOutput = new ObjectOutputStream(output);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		try {
-			objectOutput.close();
-			output.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		loadDoc();
 	}
 	
 	//loads a query doc
-	private void loadDoc(File _doc) {
-		try {
-			this.input = new FileInputStream(_doc);
-		}
-		catch (FileNotFoundException e) {
-			//if there's no doc, create one
-			createDoc(_doc);
-			e.printStackTrace();
-		}
-
-		try {
-			this.objectInput = new ObjectInputStream(input);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+	private void loadDoc() {
+		if(!queryDoc.exists()) {
+			try {
+				queryDoc.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
 	//writes a query to the doc
 	public void writeQuery(ArrayList<Query> _q) {
+		System.out.println("writing the query");
 		try {
+			this.output = new FileOutputStream(queryDoc);
+			this.objectOutput = new ObjectOutputStream(output);
 			this.objectOutput.writeObject(_q);
+			System.out.println("query has been written");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -97,19 +65,24 @@ public class ReaderWriter {
 	//reads queries from the doc
 	public ArrayList<Query> readQueries() {
 		ArrayList<Query> q = null;
-		
+
 		try {
+			this.input = new FileInputStream(queryDoc);
+			this.objectInput = new ObjectInputStream(input);
 			q = (ArrayList<Query>) objectInput.readObject();
+			objectInput.close();
+			return q;
 		}
 		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("class not found exception");
+			return null;
+			//e.printStackTrace();
 		}
 		catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("IO exception");
 			e.printStackTrace();
+			return null;
 		}
-		return q;
 	}
 	
 	//marks a query as inactive

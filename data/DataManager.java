@@ -23,7 +23,12 @@ public class DataManager {
 		return queries;
 	}
 	
+	//this adds the query to the list and then writes it to the file
 	public static void submitQuery(Query _q) {
+		System.out.println("sending query to the readerwriter");
+		if(getQueryList() == null) {
+			queries = new ArrayList<Query>();
+		}
 		queries.add(_q);
 		readerWriter.writeQuery(queries);
 		

@@ -28,8 +28,9 @@ public class QueryManager {
 		availableQueries = DataManager.getQueryList();
 	}
 	
-	//creates a new query
+	//creates a new query and sends it to the data manager
 	public static Query createQuery(String _make, String _model, String _year, LocalDateTime _date) {
+		System.out.println("submitting query to the datamanager");
 		currentQuery = new Query(_make, _model, _year, LocalDateTime.now());
 		DataManager.submitQuery(currentQuery);
 		return currentQuery;
@@ -41,11 +42,24 @@ public class QueryManager {
 		ArrayList<Query> q = new ArrayList<Query>();
 		
 		Query terms = new Query(_make, _model ,_year, _date);
-
+		refreshQueries();
+		if(availableQueries == null) {
+			return null;
+		}
 		for(int i=0; i<availableQueries.size(); i++) {
 			Query checking = availableQueries.get(i);
-			if(checking.isActive() && matchQuery(checking, terms)) {
-				q.add(checking);
+			System.out.println("Checking a query for match");
+			if(checking.isActive()) {
+				if(matchQuery(checking, terms)) {
+					System.out.println("found one");
+					q.add(checking);
+				}
+				else {
+					System.out.println("This query did not match");
+				}
+			}
+			else {
+				System.out.println("This Query is inactive");
 			}
 		}
 		
@@ -54,18 +68,22 @@ public class QueryManager {
 	
 	//helper for findQuery
 	private static boolean matchQuery(Query _q, Query _terms) {
-		if(_terms.getMake() != null && !_terms.getMake().contentEquals("") && _terms.getMake() != _q.getMake()) {
+		if(_terms.getMake() != null && !_terms.getMake().equals("") && !_terms.getMake().equals(_q.getMake())) {
 			return false;
 		}
-		if(_terms.getModel() != null && !_terms.getModel().contentEquals("")  && _terms.getModel() != _q.getModel()) {
+		System.out.println("make is good");
+		if(_terms.getModel() != null && !_terms.getModel().equals("")  && !_terms.getMake().equals(_q.getModel())) {
 			return false;
 		}
-		if(_terms.getYear() != null && !_terms.getYear().contentEquals("")  && _terms.getYear() != _q.getYear()) {
+		System.out.println("model is good");
+		if(_terms.getYear() != null && !_terms.getYear().equals("")  && !_terms.getMake().equals(_q.getYear())) {
 			return false;
 		}
-		if(_terms.getDate() != null && !_terms.getDate().contentEquals("")  && _terms.getDate() != _q.getDate()) {
+		System.out.println("year is good");
+		if(_terms.getDate() != null && !_terms.getDate().equals("")  && !_terms.getMake().equals(_q.getDate())) {
 			return false;
 		}
+		System.out.println("date is good");
 		return true;
 		
 	}
