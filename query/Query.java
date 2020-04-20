@@ -4,15 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-/*
+/**
  * This Query class holds the information about the car that is having issues. Eventually it will also 
  * hold possible diagnoses.
-<<<<<<< HEAD
- * 
  * Query
-=======
->>>>>>> 43d29e0184cb963d9c1265ad5892623bd4e8fd8b
- * Last Updated: 4/13/2020
+ * Last Updated: 4/20/2020
  * @author Conner Trieskey
  * 
  */
@@ -25,6 +21,13 @@ public class Query implements Serializable{
 		
 	}
 	
+	/**
+	 * @param make
+	 * @param model
+	 * @param year
+	 * @param date
+	 * This constructor takes the date from your machine.
+	 */
 	public Query(String make, String model, String year, LocalDateTime date) {
 		this.make = make;
 		this.model = model;
@@ -32,6 +35,13 @@ public class Query implements Serializable{
 		this.date = date.toString();
 	}
 	
+	/**
+	 * @param make
+	 * @param model
+	 * @param year
+	 * @param date
+	 * This constructor recieves a user_typed date.
+	 */
 	public Query(String make, String model, String year, String date) {
 		this.make = make;
 		this.model = model;
@@ -39,6 +49,9 @@ public class Query implements Serializable{
 		this.date = date;
 	}
 	
+	/**
+	 * This method is used to print the query to the console.
+	 */
 	public void printDetails() {
 		System.out.println(toString());
 	}

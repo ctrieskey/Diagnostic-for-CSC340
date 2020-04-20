@@ -6,7 +6,12 @@ import java.util.Scanner;
 
 import query.Query;
 import query.QueryManager;
-
+/**
+ * A class for testing the reading and writing of queries to a file
+ * conner trieskey
+ * 4/20/2020
+ * 
+ */
 public class TestQueryRecords {
 
 	public static Scanner input = new Scanner(System.in);

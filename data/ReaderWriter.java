@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import query.Query;
 import query.QueryManager;
 
-/*
+/**
  * This class will be in charge of reading and writing data supplied by
  * the data manager into actual documents.
  * reader writer
@@ -31,13 +31,17 @@ public class ReaderWriter {
 	private FileOutputStream output;
 	private ObjectOutputStream objectOutput;
 	
-	//constructor that loads list of queries from a file
+	/**
+	 * This constructor sets up the file
+	 */
 	public ReaderWriter() {
 		queryDoc = new File(QUERY_DOC_FILENAME);
 		loadDoc();
 	}
 	
-	//loads a query doc
+	/**
+	 * This method makes sure there is a file.
+	 */
 	private void loadDoc() {
 		if(!queryDoc.exists()) {
 			try {
@@ -48,7 +52,10 @@ public class ReaderWriter {
 		}
 	}
 
-	//writes a query to the doc
+	/**
+	 * @param _q
+	 * This method writes a list of queries to the document.
+	 */
 	public void writeQuery(ArrayList<Query> _q) {
 		System.out.println("writing the query");
 		try {
@@ -62,7 +69,10 @@ public class ReaderWriter {
 		}
 	}
 	
-	//reads queries from the doc
+	/**
+	 * @return
+	 * This method reads a list of queries from the document.
+	 */
 	public ArrayList<Query> readQueries() {
 		ArrayList<Query> q = null;
 
@@ -85,7 +95,10 @@ public class ReaderWriter {
 		}
 	}
 	
-	//marks a query as inactive
+	/**
+	 * @param _q
+	 * This method will mark a query as deleted.
+	 */
 	public void deleteQuery(Query _q) {
 		QueryManager.getCurrentQuery().setActive(false);
 	}
