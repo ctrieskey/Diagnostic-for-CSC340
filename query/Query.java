@@ -1,5 +1,6 @@
 package query;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * @author Conner Trieskey
  * 
  */
-public class Query {
+public class Query implements Serializable{
 
 	private String make, model, year, date, symptoms;
 	private boolean isActive = true;
@@ -36,6 +37,15 @@ public class Query {
 		this.model = model;
 		this.year = year;
 		this.date = date;
+	}
+	
+	public void printDetails() {
+		System.out.println(toString());
+	}
+	
+	public String toString() {
+		String s = "Date: " + date + " Car: " + year + " " + make + " " + model + ". Symptoms: " + symptoms;
+		return s;
 	}
 	
 	//=============Getters============
