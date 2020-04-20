@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 import data.DataManager;
 
-/*
+/**
  * This Query Manager class creates and looks up saved query documents for the user to view.
  * These documents use the make, model, year, or date of query creation to look up a query.
  * The search model can give the findQuery method null values if only part of the information on the 
  * query is known. The method will return any queries that match the search terms.
  * 
  * QueryManager
- * Last Updated: 4/13/2020
+ * Last Updated: 4/20/2020
  * @author Conner Trieskey
  * 
  */
@@ -23,12 +23,22 @@ public class QueryManager {
 	
 	private static Query currentQuery;
 	
-	//updates the query list
+	/**
+	 * This method makes sure that this class has the same list as the file.
+	 */
 	public static void refreshQueries() {
 		availableQueries = DataManager.getQueryList();
 	}
 	
-	//creates a new query and sends it to the data manager
+	/**
+	 * @param _make
+	 * @param _model
+	 * @param _year
+	 * @param _date
+	 * @return
+	 * This is a factory method for queries. It takes user data and turns it into a query object and then submits it to
+	 * the data manager to be written to the file.
+	 */
 	public static Query createQuery(String _make, String _model, String _year, LocalDateTime _date) {
 		System.out.println("submitting query to the datamanager");
 		currentQuery = new Query(_make, _model, _year, LocalDateTime.now());
@@ -37,7 +47,15 @@ public class QueryManager {
 		
 	}
 
-	//searches list for a query that contains a matching term.
+	/**
+	 * @param _make
+	 * @param _model
+	 * @param _year
+	 * @param _date
+	 * @return
+	 * This method searches this class's list of queries for any that match user unput search terms and returns
+	 * a list of matches.
+	 */
 	public static ArrayList<Query> findQuery(String _make, String _model, String _year, String _date) {
 		ArrayList<Query> q = new ArrayList<Query>();
 		
@@ -66,7 +84,12 @@ public class QueryManager {
 		return q;
 	}
 	
-	//helper for findQuery
+	/**
+	 * @param _q
+	 * @param _terms
+	 * @return
+	 * This is a helper method for the method above. It checks each search term for a match.
+	 */
 	private static boolean matchQuery(Query _q, Query _terms) {
 		if(_terms.getMake() != null && !_terms.getMake().equals("") && !_terms.getMake().equals(_q.getMake())) {
 			return false;
@@ -88,16 +111,27 @@ public class QueryManager {
 		
 	}
 	
+	/**
+	 * This method saves this class's list to the file.
+	 */
 	public static void saveQueries() {
 		DataManager.saveQueries(availableQueries);
 	}
 	
-	//selects a query to view or edit
+	/**
+	 * this class can be used to change this class's selected query.
+	 */
 	public static void selectQuery(Query _q) {
 		currentQuery = _q;
 	}
 	
-	//updates a query in the doc
+	/**
+	 * @param _make
+	 * @param _model
+	 * @param _year
+	 * @param _symptoms
+	 * This method can be used to completely update this class's currently selected query.
+	 */
 	public static void updateQuery(String _make, String _model, String _year, String _symptoms) {
 		currentQuery.setMake(_make);
 		currentQuery.setModel(_model);
@@ -106,6 +140,8 @@ public class QueryManager {
 		
 	}
 	
+	//==============Getters================
+	
 	public ArrayList<Query> getAvailableQueries(){
 		return availableQueries;
 	}
@@ -113,6 +149,8 @@ public class QueryManager {
 	public static Query getCurrentQuery() {
 		return currentQuery;
 	}
+	
+	//=============Setters=================
 
 	public static void setCurrentQuery(Query currentQuery) {
 		QueryManager.currentQuery = currentQuery;
