@@ -88,13 +88,17 @@ public class QueryManager {
 		
 	}
 	
+	public static void saveQueries() {
+		DataManager.saveQueries(availableQueries);
+	}
+	
 	//selects a query to view or edit
-	public void selectQuery(Query _q) {
+	public static void selectQuery(Query _q) {
 		currentQuery = _q;
 	}
 	
 	//updates a query in the doc
-	public void updateQuery(String _make, String _model, String _year, String _symptoms) {
+	public static void updateQuery(String _make, String _model, String _year, String _symptoms) {
 		currentQuery.setMake(_make);
 		currentQuery.setModel(_model);
 		currentQuery.setYear(_year);
