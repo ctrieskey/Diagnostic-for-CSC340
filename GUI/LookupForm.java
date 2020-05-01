@@ -1,19 +1,23 @@
 package GUI;
 
+import java.io.PrintStream;
 import javax.swing.JFrame;
 import query.QueryManager;
 
 /**
+ * The LookupForm JFrame allows the user to search for a previously created
+ * query.At the start 1 text area, 2 buttons, 4 text fields, and 10 labels
+ * should be visible.
  *
- * @author lavan
+ * Last Updated: 4/27/2020
+ * @author Lavante Hammond
  */
 public class LookupForm extends javax.swing.JFrame {
-
-    /**
-     * Creates new form LookupForm
-     */
+    private String _make, _model, _year, _date;
+    //Generates LookupForm
     public LookupForm() {
         initComponents();
+        //Centers window
         this.setLocationRelativeTo(null);
     }
 
@@ -48,7 +52,7 @@ public class LookupForm extends javax.swing.JFrame {
         jButtonLookup = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaSymptoms = new javax.swing.JTextArea();
+        jTextAreaResults = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -240,14 +244,15 @@ public class LookupForm extends javax.swing.JFrame {
             }
         });
 
-        jTextAreaSymptoms.setBackground(new java.awt.Color(232, 236, 241));
-        jTextAreaSymptoms.setColumns(20);
-        jTextAreaSymptoms.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaSymptoms);
+        jTextAreaResults.setEditable(false);
+        jTextAreaResults.setBackground(new java.awt.Color(232, 236, 241));
+        jTextAreaResults.setColumns(20);
+        jTextAreaResults.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaResults);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel7.setText("Possible symptoms: ");
+        jLabel7.setText("Results:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -324,14 +329,19 @@ public class LookupForm extends javax.swing.JFrame {
 
     private void jButtonLookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLookupActionPerformed
 
-        String _make, _model, _year, _date, _symptoms;
+
 
         _make = jTextFieldMake.getText();
         _model = jTextFieldModel.getText();
         _year = jTextFieldYear.getText();
         _date = jTextFieldDate.getText();
-        _symptoms = jTextAreaSymptoms.getText();
 
+        //Changes location of system output to jTextAreaDiagnosis
+        PrintStream printStream = new PrintStream(new CustomOutputStream(jTextAreaResults));
+        System.setOut(printStream);
+        System.setErr(printStream);
+
+        //Uses query manager method to find a matching query
         QueryManager.findQuery(_make, _model, _year, _date);
 
 
@@ -407,7 +417,7 @@ public class LookupForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextAreaSymptoms;
+    private javax.swing.JTextArea jTextAreaResults;
     private javax.swing.JTextField jTextFieldDate;
     private javax.swing.JTextField jTextFieldMake;
     private javax.swing.JTextField jTextFieldModel;

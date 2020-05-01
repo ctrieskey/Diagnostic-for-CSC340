@@ -432,8 +432,9 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextAreaSymptoms">
+            <Component class="javax.swing.JTextArea" name="jTextAreaResults">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f1" green="ec" red="e8" type="rgb"/>
                 </Property>
@@ -451,7 +452,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fa" green="fa" red="fa" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Possible symptoms: "/>
+            <Property name="text" type="java.lang.String" value="Results:"/>
           </Properties>
         </Component>
       </SubComponents>

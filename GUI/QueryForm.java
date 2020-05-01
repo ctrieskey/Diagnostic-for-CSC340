@@ -3,11 +3,20 @@ package GUI;
 import java.time.LocalDateTime;
 import javax.swing.JFrame;
 import query.QueryManager;
+import query.Query;
+import data.DataManager;
+
 /**
+ * The QueryForm JFrame is used by the user to create new queries. At the start
+ * 1 text area, 2 buttons, 4 text fields, and 10 labels should be visible.
+ *
+ * Last Updated: 4/27/2020
  *
  * @author Lavante Hammond
  */
 public class QueryForm extends javax.swing.JFrame {
+
+    private String _make, _model, _year, _symptoms;
 
     /**
      * Creates new form QueryForm
@@ -304,15 +313,20 @@ public class QueryForm extends javax.swing.JFrame {
     //This button submits query to textfile
     private void jButtonEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnterActionPerformed
 
-        String _make, _model, _year, _symptoms;
-
         _make = jTextFieldMake.getText();
         _model = jTextFieldModel.getText();
         _year = jTextFieldYear.getText();
         _symptoms = jTextAreaSymptoms.getText();
 
-        QueryManager.createQuery(_make, _model, _year, LocalDateTime.MAX);
-       // QueryManager.updateQuery(_make, _model, _year,_symptoms);
+        System.out.println(DataManager.getQueryList());
+        /*
+        Query input = new Query(_make, _model, _year, LocalDateTime.MAX);
+        input.setSymptoms(_symptoms);
+        DataManager.submitQuery(input); */
+
+        //QueryManager.createQuery(_make, _model, _year, LocalDateTime.MAX);
+        //QueryManager.currentQuery.setSymptoms(_symptoms);
+        // QueryManager.updateQuery(_make, _model, _year,_symptoms);
 
     }//GEN-LAST:event_jButtonEnterActionPerformed
 
