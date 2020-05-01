@@ -42,9 +42,14 @@ public class CarDiagApi implements CarApiInterface {
             in.close();
             con.disconnect();
             //Create the output object
+            System.out.println("Output: " + content.toString());
             JSONObject obj = new JSONObject(content.toString());
-            String problem = obj.getString("problem");
-            return problem;
+            JSONObject data = obj.getJSONObject("data");
+            String urgency = data.getString("urgency_desc");
+            String effect = data.getString("effect_on_vehicle");
+            String responsible = data.getString("responsible_system");
+            String diagnostic = urgency + "\n" + effect + "\n" + responsible;
+            return diagnostic;
         } catch(IOException | JSONException exception) {
             return null;
         }
