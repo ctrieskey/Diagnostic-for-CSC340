@@ -3,8 +3,13 @@ package GUI;
 import javax.swing.JFrame;
 
 /**
+ * The WelcomeWindow JFrame provides the initial interface for the user. When
+ * started, 2 buttons and 5 labels should be visible.
  *
- * @author lavan
+ *
+ * Last Updated: 4/20/2020
+ *
+ * @author Lavante Hammond
  */
 public class WelcomeWindow extends javax.swing.JFrame {
 

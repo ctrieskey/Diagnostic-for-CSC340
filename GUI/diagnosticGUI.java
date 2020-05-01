@@ -2,10 +2,6 @@ package GUI;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author lavan
- */
 public class diagnosticGUI extends javax.swing.JFrame {
 
     /**

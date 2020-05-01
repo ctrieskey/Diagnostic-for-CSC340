@@ -1,9 +1,17 @@
 package GUI;
 
 import javax.swing.JFrame;
+
 /**
+ * The Documenter JFrame provides the user with the option of entering a new
+ * query or looking up a previously written query. At the start 3 buttons and 5
+ * labels should be visible.1 text area, 2 buttons, 4 text fields, and 10 labels
+ * should be visible.
  *
- * @author lavan
+ *
+ * Last Updated: 4/20/2020
+ *
+ * @author Lavante Hammond
  */
 public class Documentor extends javax.swing.JFrame {
 
@@ -221,7 +229,7 @@ public class Documentor extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseWinMouseClicked
 
     private void jButtonLookupQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLookupQueryActionPerformed
-         // Opens Interpreter form
+        // Opens Interpreter form
         InterpreterForm interpret = new InterpreterForm();
         interpret.setVisible(true);
     }//GEN-LAST:event_jButtonLookupQueryActionPerformed

@@ -3,13 +3,21 @@ package GUI;
 import javax.swing.JFrame;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import gui.CustomOutputStream;
+import GUI.CustomOutputStream;
+
 /**
+ * The Interpreter JFrame takes the vin number, mileage, and dtc code input by
+ * the user and returns a diagnostic using the api. At the start 1 text area 2
+ * buttons, 3 text fields, and 9 labels should be visible.
  *
- * @author lavan
+ *
+ * Last Updated: 5/1/2020
+ *
+ * @author Lavante Hammond
  */
 public class InterpreterForm extends javax.swing.JFrame {
-
+    private String _dtc, _vin;
+    private int _mileage;
     /**
      * Creates new form InterpreterForm
      */
@@ -370,22 +378,21 @@ public class InterpreterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldMileageActionPerformed
 
     private void jButtonEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnterActionPerformed
-        String _dtc, _vin;
-        int _mileage;
 
-        /*
+
+
+        //Changes location of system output to jTextAreaDiagnosis
         PrintStream printStream = new PrintStream(new CustomOutputStream(jTextAreaDiagnosis));
         System.setOut(printStream);
         System.setErr(printStream);
 
-        */
-       _mileage = Integer.parseInt(jTextFieldMileage.getText());
+        _mileage = Integer.parseInt(jTextFieldMileage.getText());
         _dtc = jTextFieldDTC.getText();
         _vin = jTextFieldVin.getText();
 
-       api.CarDiagApi interpreter = new api.CarDiagApi();
-       interpreter.loadDiagnostic(_vin, _mileage, _dtc);
-       //jTextAreaDiagnosis.append();
+        api.CarDiagApi interpreter = new api.CarDiagApi();
+        System.out.println(interpreter.loadDiagnostic(_vin, _mileage, _dtc));
+
 
     }//GEN-LAST:event_jButtonEnterActionPerformed
 
@@ -425,7 +432,7 @@ public class InterpreterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jTextFieldVinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVinActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextFieldVinActionPerformed
 
     /**
