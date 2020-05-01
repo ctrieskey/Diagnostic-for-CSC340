@@ -12,6 +12,7 @@ public class Documentor extends javax.swing.JFrame {
      */
     public Documentor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -220,9 +221,9 @@ public class Documentor extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelCloseWinMouseClicked
 
     private void jButtonLookupQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLookupQueryActionPerformed
-         // Opens lookup form
-        LookupForm lookup = new LookupForm();
-        lookup.setVisible(true);
+         // Opens Interpreter form
+        InterpreterForm interpret = new InterpreterForm();
+        interpret.setVisible(true);
     }//GEN-LAST:event_jButtonLookupQueryActionPerformed
 
     /**
