@@ -39,7 +39,7 @@ public class CarAPIDemo {
             System.out.println("Response Code: " + status);
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine;
-            StringBuilder content = new StringBuilder();
+            StringBuffer content = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
@@ -51,6 +51,13 @@ public class CarAPIDemo {
             //Builds and displays the output from the API request.
             System.out.println("Output: " + content.toString());
             JSONObject obj = new JSONObject(content.toString());
+            JSONObject data = obj.getJSONObject("data");
+            String urgency = data.getString("urgency_desc");
+            String effect = data.getString("effect_on_vehicle");
+            String responsible = data.getString("responsible_system");
+            System.out.println("Urgency: " + urgency);
+            System.out.println("Effect on Vehicle: " + effect);
+            System.out.println("Responsible System: " + responsible);
         } catch (Exception ex) {
             Logger.getLogger(CarAPIDemo.class.getName()).log(Level.SEVERE, null, ex);
         }
