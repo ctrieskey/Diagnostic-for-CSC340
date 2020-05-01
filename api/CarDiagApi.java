@@ -8,8 +8,8 @@ import org.json.*;
  * The CarDiagApi class connects to the CarMD server to retrieve a diagnostic on
  * the vehicle given its VIN, mileage, and the error code.
  * Note: Do not call this class directly. Route requests through
- * CarDiagApiTranslator
- * Last Updated: 4/13/2020
+ * CarDiagAdapter
+ * Last Updated: 5/1/2020
  * @author Kevin Wright
  */
 
@@ -42,7 +42,6 @@ public class CarDiagApi implements CarApiInterface {
             in.close();
             con.disconnect();
             //Create the output object
-            System.out.println("Output: " + content.toString());
             JSONObject obj = new JSONObject(content.toString());
             JSONObject data = obj.getJSONObject("data");
             String urgency = data.getString("urgency_desc");
