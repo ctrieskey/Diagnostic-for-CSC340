@@ -8,7 +8,7 @@ import org.json.*;
 /**
  * This prototype demonstrates a call to the API
  * @author Kevin Wright
- * Updated 3/30/2020
+ * Updated 5/1/2020
  */
 public class CarAPIDemo {
     /**
@@ -49,7 +49,6 @@ public class CarAPIDemo {
             conn.disconnect();
 
             //Builds and displays the output from the API request.
-            System.out.println("Output: " + content.toString());
             JSONObject obj = new JSONObject(content.toString());
             JSONObject data = obj.getJSONObject("data");
             String urgency = data.getString("urgency_desc");
