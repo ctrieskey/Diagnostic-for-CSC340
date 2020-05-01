@@ -1,7 +1,9 @@
 package GUI;
 
 import javax.swing.JFrame;
-
+import java.io.OutputStream;
+import java.io.PrintStream;
+import gui.CustomOutputStream;
 /**
  *
  * @author lavan
@@ -13,6 +15,7 @@ public class InterpreterForm extends javax.swing.JFrame {
      */
     public InterpreterForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -44,17 +47,15 @@ public class InterpreterForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jTextFieldDTC = new javax.swing.JTextField();
         jTextFieldMileage = new javax.swing.JTextField();
-        jTextFieldVIN = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldDtc1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextFieldVin = new javax.swing.JTextField();
+        jButtonEnter = new javax.swing.JButton();
+        jButtonCancel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaDiagnosis = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -192,7 +193,7 @@ public class InterpreterForm extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel2.setText("Please Enter your Vehicle's Details");
+        jLabel2.setText("Please Enter your Vehicle's Details:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(250, 250, 250));
@@ -200,39 +201,36 @@ public class InterpreterForm extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel4.setText("Model");
+        jLabel4.setText("DTC code");
+
+        jTextFieldDTC.setBackground(new java.awt.Color(232, 236, 241));
+        jTextFieldDTC.setText("p0420");
+        jTextFieldDTC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDTCActionPerformed(evt);
+            }
+        });
 
         jTextFieldMileage.setBackground(new java.awt.Color(232, 236, 241));
+        jTextFieldMileage.setText("51000");
         jTextFieldMileage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldMileageActionPerformed(evt);
             }
         });
 
-        jTextFieldVIN.setBackground(new java.awt.Color(232, 236, 241));
-        jTextFieldVIN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldVINActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel5.setText("Make");
+        jLabel5.setText("Mileage");
         jLabel5.setToolTipText("");
 
-        jTextFieldDtc1.setBackground(new java.awt.Color(232, 236, 241));
-        jTextFieldDtc1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldVin.setBackground(new java.awt.Color(232, 236, 241));
+        jTextFieldVin.setText("1GNALDEK9FZ108495");
+        jTextFieldVin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDtc1ActionPerformed(evt);
+                jTextFieldVinActionPerformed(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel6.setText("Year");
-
-        jTextField1.setBackground(new java.awt.Color(232, 236, 241));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -242,20 +240,20 @@ public class InterpreterForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(69, 69, 69)
+                        .addComponent(jTextFieldVin))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 140, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel4))
                         .addGap(46, 46, 46)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldVIN)
-                            .addComponent(jTextFieldMileage)
-                            .addComponent(jTextFieldDtc1)
-                            .addComponent(jTextField1))))
+                            .addComponent(jTextFieldDTC)
+                            .addComponent(jTextFieldMileage))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -263,66 +261,68 @@ public class InterpreterForm extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldVIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(jTextFieldVin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldMileage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(jTextFieldMileage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(47, 47, 47)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldDtc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                    .addComponent(jTextFieldDTC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(23, 23, 23))
         );
 
-        jButton1.setText("Enter Query");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEnter.setText("Enter Query");
+        jButtonEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonEnterActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel");
-
-        jTextArea1.setBackground(new java.awt.Color(232, 236, 241));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jButtonCancel.setText("Cancel");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel7.setText("Vehicle symptoms: ");
+        jLabel7.setText("Diagnosis:");
+
+        jTextAreaDiagnosis.setColumns(20);
+        jTextAreaDiagnosis.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaDiagnosis);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                .addGap(58, 58, 58)
+                .addComponent(jButtonCancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonEnter)
                 .addGap(51, 51, 51))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(318, 318, 318))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(281, 281, 281))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,16 +330,16 @@ public class InterpreterForm extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonEnter)
+                    .addComponent(jButtonCancel))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -361,21 +361,33 @@ public class InterpreterForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldDTCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDTCActionPerformed
+
+    }//GEN-LAST:event_jTextFieldDTCActionPerformed
+
     private void jTextFieldMileageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMileageActionPerformed
 
     }//GEN-LAST:event_jTextFieldMileageActionPerformed
 
-    private void jTextFieldVINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVINActionPerformed
+    private void jButtonEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnterActionPerformed
+        String _dtc, _vin;
+        int _mileage;
 
-    }//GEN-LAST:event_jTextFieldVINActionPerformed
+        /*
+        PrintStream printStream = new PrintStream(new CustomOutputStream(jTextAreaDiagnosis));
+        System.setOut(printStream);
+        System.setErr(printStream);
 
-    private void jTextFieldDtc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDtc1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDtc1ActionPerformed
+        */
+       _mileage = Integer.parseInt(jTextFieldMileage.getText());
+        _dtc = jTextFieldDTC.getText();
+        _vin = jTextFieldVin.getText();
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+       api.CarDiagApi interpreter = new api.CarDiagApi();
+       interpreter.loadDiagnostic(_vin, _mileage, _dtc);
+       //jTextAreaDiagnosis.append();
+
+    }//GEN-LAST:event_jButtonEnterActionPerformed
 
     private void jlabelCloseWinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlabelCloseWinMouseClicked
         //Close window
@@ -388,24 +400,33 @@ public class InterpreterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelMinWindowMouseClicked
 
     private void jlabelCloseWin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlabelCloseWin1MouseClicked
-        //Close window
+        //Closes window
         System.exit(0);
     }//GEN-LAST:event_jlabelCloseWin1MouseClicked
 
     private void jLabelMinWindow1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinWindow1MouseClicked
-        //Minimize window
+        //Minimizes window
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabelMinWindow1MouseClicked
 
     private void jlabelCloseWin3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlabelCloseWin3MouseClicked
-        //Close window
+        //Closes window
         System.exit(0);
     }//GEN-LAST:event_jlabelCloseWin3MouseClicked
 
     private void jLabelMinWindow3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinWindow3MouseClicked
-        //Minimize window
+        //Minimizes window
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabelMinWindow3MouseClicked
+
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        // disposes of window
+        dispose();
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void jTextFieldVinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldVinActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,17 +455,19 @@ public class InterpreterForm extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterpreterForm().setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonEnter;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -452,7 +475,6 @@ public class InterpreterForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -464,12 +486,11 @@ public class InterpreterForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextFieldDtc1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaDiagnosis;
+    private javax.swing.JTextField jTextFieldDTC;
     private javax.swing.JTextField jTextFieldMileage;
-    private javax.swing.JTextField jTextFieldVIN;
+    private javax.swing.JTextField jTextFieldVin;
     private javax.swing.JLabel jlabelCloseWin;
     private javax.swing.JLabel jlabelCloseWin1;
     private javax.swing.JLabel jlabelCloseWin2;
