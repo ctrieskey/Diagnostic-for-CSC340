@@ -13,6 +13,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
      */
     public WelcomeWindow() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -213,7 +214,9 @@ public class WelcomeWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelMinWindowMouseClicked
 
     private void jButtonLookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLookupActionPerformed
-       //Open lookup form
+        // Opens lookup form
+        LookupForm lookup = new LookupForm();
+        lookup.setVisible(true);
     }//GEN-LAST:event_jButtonLookupActionPerformed
 
     /**

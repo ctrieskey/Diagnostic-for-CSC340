@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.JFrame;
+import query.QueryManager;
 
 /**
  *
@@ -13,6 +14,7 @@ public class LookupForm extends javax.swing.JFrame {
      */
     public LookupForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -37,16 +39,16 @@ public class LookupForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldMileage = new javax.swing.JTextField();
-        jTextFieldVIN = new javax.swing.JTextField();
+        jTextFieldModel = new javax.swing.JTextField();
+        jTextFieldMake = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldDtc1 = new javax.swing.JTextField();
+        jTextFieldYear = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldDate = new javax.swing.JTextField();
         jButtonLookup = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaSymptoms = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -144,17 +146,17 @@ public class LookupForm extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(250, 250, 250));
         jLabel4.setText("Model");
 
-        jTextFieldMileage.setBackground(new java.awt.Color(232, 236, 241));
-        jTextFieldMileage.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldModel.setBackground(new java.awt.Color(232, 236, 241));
+        jTextFieldModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMileageActionPerformed(evt);
+                jTextFieldModelActionPerformed(evt);
             }
         });
 
-        jTextFieldVIN.setBackground(new java.awt.Color(232, 236, 241));
-        jTextFieldVIN.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldMake.setBackground(new java.awt.Color(232, 236, 241));
+        jTextFieldMake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldVINActionPerformed(evt);
+                jTextFieldMakeActionPerformed(evt);
             }
         });
 
@@ -163,10 +165,10 @@ public class LookupForm extends javax.swing.JFrame {
         jLabel5.setText("Make");
         jLabel5.setToolTipText("");
 
-        jTextFieldDtc1.setBackground(new java.awt.Color(232, 236, 241));
-        jTextFieldDtc1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldYear.setBackground(new java.awt.Color(232, 236, 241));
+        jTextFieldYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDtc1ActionPerformed(evt);
+                jTextFieldYearActionPerformed(evt);
             }
         });
 
@@ -174,7 +176,7 @@ public class LookupForm extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(250, 250, 250));
         jLabel6.setText("Year");
 
-        jTextField1.setBackground(new java.awt.Color(232, 236, 241));
+        jTextFieldDate.setBackground(new java.awt.Color(232, 236, 241));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -194,10 +196,10 @@ public class LookupForm extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(46, 46, 46)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldVIN)
-                            .addComponent(jTextFieldMileage)
-                            .addComponent(jTextFieldDtc1)
-                            .addComponent(jTextField1))))
+                            .addComponent(jTextFieldMake)
+                            .addComponent(jTextFieldModel)
+                            .addComponent(jTextFieldYear)
+                            .addComponent(jTextFieldDate))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -208,19 +210,19 @@ public class LookupForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextFieldVIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldMake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldMileage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldDtc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
@@ -238,10 +240,10 @@ public class LookupForm extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setBackground(new java.awt.Color(232, 236, 241));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaSymptoms.setBackground(new java.awt.Color(232, 236, 241));
+        jTextAreaSymptoms.setColumns(20);
+        jTextAreaSymptoms.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaSymptoms);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(250, 250, 250));
@@ -308,20 +310,31 @@ public class LookupForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldMileageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMileageActionPerformed
+    private void jTextFieldModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldModelActionPerformed
 
-    }//GEN-LAST:event_jTextFieldMileageActionPerformed
+    }//GEN-LAST:event_jTextFieldModelActionPerformed
 
-    private void jTextFieldVINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVINActionPerformed
+    private void jTextFieldMakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMakeActionPerformed
 
-    }//GEN-LAST:event_jTextFieldVINActionPerformed
+    }//GEN-LAST:event_jTextFieldMakeActionPerformed
 
-    private void jTextFieldDtc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDtc1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDtc1ActionPerformed
+    private void jTextFieldYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldYearActionPerformed
+
+    }//GEN-LAST:event_jTextFieldYearActionPerformed
 
     private void jButtonLookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLookupActionPerformed
-        // TODO add your handling code here:
+
+        String _make, _model, _year, _date, _symptoms;
+
+        _make = jTextFieldMake.getText();
+        _model = jTextFieldModel.getText();
+        _year = jTextFieldYear.getText();
+        _date = jTextFieldDate.getText();
+        _symptoms = jTextAreaSymptoms.getText();
+
+        QueryManager.findQuery(_make, _model, _year, _date);
+
+
     }//GEN-LAST:event_jButtonLookupActionPerformed
 
     private void jlabelCloseWinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlabelCloseWinMouseClicked
@@ -394,11 +407,11 @@ public class LookupForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextFieldDtc1;
-    private javax.swing.JTextField jTextFieldMileage;
-    private javax.swing.JTextField jTextFieldVIN;
+    private javax.swing.JTextArea jTextAreaSymptoms;
+    private javax.swing.JTextField jTextFieldDate;
+    private javax.swing.JTextField jTextFieldMake;
+    private javax.swing.JTextField jTextFieldModel;
+    private javax.swing.JTextField jTextFieldYear;
     private javax.swing.JLabel jlabelCloseWin;
     // End of variables declaration//GEN-END:variables
 }
