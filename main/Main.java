@@ -1,5 +1,6 @@
 package main;
 
+import GUI.WelcomeWindow;
 import forms.ProtoWindow;
 
 /**
@@ -10,8 +11,8 @@ import forms.ProtoWindow;
 public class Main {
     public static void main(String[] args) {
         //Creates a new window object
-        ProtoWindow proto = new ProtoWindow();
+        WelcomeWindow welc = new WelcomeWindow();
         //Displays the JFrame window
-        proto.setVisible(true);
+        welc.setVisible(true);
     }
 }
