@@ -32,7 +32,7 @@ public class Query implements Serializable{
 		this.make = make;
 		this.model = model;
 		this.year = year;
-		this.date = date.toString();
+		this.date = date.getMonth() + "/" + date.getDayOfMonth() + "/" + date.getYear();
 	}
 	
 	/**
